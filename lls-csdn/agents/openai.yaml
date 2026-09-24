@@ -1,0 +1,7 @@
+interface:
+  display_name: "LLS CSDN"
+  short_description: "把新技术写成通俗、专业、图文并茂的中文 CSDN 科普文章"
+  brand_color: "#12B8C4"
+  default_prompt: "使用 $lls-csdn 调研一个新兴技术或 GitHub 项目，并生成可发布的中文 CSDN 科普文章。"
+policy:
+  allow_implicit_invocation: true

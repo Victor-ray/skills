@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <title>漫画科普封面模板</title>
+  <style>
+    :root {
+      --cyan: #12B8C4;
+      --orange: #FF8A3D;
+      --ink: #263238;
+      --paper: #FFFFFF;
+      --soft: #E9FAFB;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 1280px;
+      height: 720px;
+      margin: 0;
+      overflow: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      letter-spacing: 0;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      display: grid;
+      grid-template-columns: minmax(0, 58fr) minmax(420px, 42fr);
+      border: 14px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .copy {
+      min-width: 0;
+      padding: 72px 50px 60px 68px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 8px solid var(--ink);
+    }
+
+    .topic {
+      align-self: flex-start;
+      padding: 10px 18px;
+      border: 4px solid var(--ink);
+      background: var(--orange);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .title {
+      margin: 28px 0 18px;
+      max-width: 100%;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      font-size: 64px;
+      line-height: 1.13;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      max-width: 92%;
+      font-size: 27px;
+      line-height: 1.45;
+      font-weight: 650;
+      color: #405157;
+      overflow-wrap: anywhere;
+    }
+
+    .meta {
+      margin-top: 34px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .meta-line {
+      width: 74px;
+      height: 8px;
+      background: var(--cyan);
+      border: 2px solid var(--ink);
+    }
+
+    .scene {
+      position: relative;
+      min-width: 0;
+      padding: 48px 42px;
+      background: var(--soft);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 22px;
+    }
+
+    .logo-card {
+      justify-self: end;
+      width: 120px;
+      height: 120px;
+      border: 6px solid var(--ink);
+      background: var(--paper);
+      display: grid;
+      place-items: center;
+      box-shadow: 12px 12px 0 var(--orange);
+      overflow: hidden;
+    }
+
+    .logo-card img {
+      width: 82%;
+      height: 82%;
+      object-fit: contain;
+    }
+
+    .logo-fallback {
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--cyan);
+    }
+
+    .comic-panel {
+      align-self: center;
+      width: 100%;
+      min-height: 308px;
+      border: 6px solid var(--ink);
+      background: var(--paper);
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr 72px 1fr;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 14px 14px 0 var(--cyan);
+    }
+
+    .node {
+      min-width: 0;
+      min-height: 154px;
+      border: 5px solid var(--ink);
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      text-align: center;
+      font-size: 25px;
+      line-height: 1.3;
+      font-weight: 850;
+      overflow-wrap: anywhere;
+    }
+
+    .node.input { background: var(--orange); }
+    .node.output { background: var(--cyan); }
+
+    .arrow {
+      position: relative;
+      height: 12px;
+      background: var(--ink);
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      right: -2px;
+      top: -13px;
+      border-top: 19px solid transparent;
+      border-bottom: 19px solid transparent;
+      border-left: 26px solid var(--ink);
+    }
+
+    .speech {
+      max-width: 92%;
+      padding: 13px 18px;
+      border: 4px solid var(--ink);
+      background: var(--paper);
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <section class="copy">
+      <div class="topic" data-topic>新兴技术解读</div>
+      <h1 class="title" data-title>一篇文章看懂技术名称</h1>
+      <div class="subtitle" data-subtitle>从它解决的问题，到核心架构和真实限制</div>
+      <div class="meta">
+        <span class="meta-line"></span>
+        <span data-date>2026.09.23</span>
+      </div>
+    </section>
+
+    <section class="scene">
+      <div class="logo-card" data-logo>
+        <span class="logo-fallback" data-logo-fallback>TECH</span>
+      </div>
+      <div class="comic-panel">
+        <div class="node input" data-input>复杂问题</div>
+        <div class="arrow" aria-hidden="true"></div>
+        <div class="node output" data-output>清晰方案</div>
+      </div>
+      <div class="speech" data-speech>它真正解决了什么？又有哪些边界？</div>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const setText = (selector, key) => {
+      const value = params.get(key);
+      if (value) document.querySelector(selector).textContent = value;
+    };
+
+    setText('[data-topic]', 'topic');
+    setText('[data-title]', 'title');
+    setText('[data-subtitle]', 'subtitle');
+    setText('[data-date]', 'date');
+    setText('[data-input]', 'input');
+    setText('[data-output]', 'output');
+    setText('[data-speech]', 'speech');
+
+    const logo = params.get('logo');
+    if (logo) {
+      const image = document.createElement('img');
+      image.src = logo;
+      image.alt = params.get('logoAlt') || '技术 Logo';
+      document.querySelector('[data-logo]').replaceChildren(image);
+    }
+
+    document.fonts.ready.then(() => {
+      document.body.dataset.ready = 'true';
+    });
+  </script>
+</body>
+</html>
